@@ -1,0 +1,27 @@
+#btn-play{
+display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: auto;
+}
+#text-Pc{
+
+    display: flex;
+    align-items: center;
+}
+
+#btn-nav{
+ display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+}
+nav{
+     display: flex;
+    justify-content: space-between;
+    background-color: white;
+  
+}
+/*  */
