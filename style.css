@@ -164,3 +164,23 @@ body {
   font-weight: bolder;
   color: lightblue;
 }
+
+
+
+
+/* game play css */
+#textQ{
+  color: lightgray;
+}
+
+.quastion-game{
+
+  border: solid #29354a ;
+}
+
+
+.answerBtn{
+font-size: larger;
+  background-color: lightgray;
+  
+  }
