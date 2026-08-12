@@ -1,27 +1,166 @@
-#btn-play{
-display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: auto;
-}
-#text-Pc{
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-    display: flex;
-    align-items: center;
+/*  nav bar Style  */
+.navbar {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  padding: 0 80px;
+border: 0.5px lightgray solid;
 }
 
-#btn-nav{
- display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  margin-left: 250px;
+  width: auto;
 
 }
-nav{
-     display: flex;
-    justify-content: space-between;
-    background-color: white;
+
+
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: larger;
   
 }
-/*  */
+
+
+
+.nav-links a:hover {
+  color: #8b5cf6;
+
+}
+/*  nav bar Style  */
+
+#btn-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: auto;
+}
+
+#text-Pc {
+
+  display: flex;
+  align-items: center;
+}
+
+
+#title {
+
+  color: lightgray;
+  margin: 0;
+
+}
+
+
+.QuizImgH {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.text1 {
+  
+  width: 45%;
+  font-size: 55px;
+}
+
+#btn-play{
+  display: flex;
+  margin-top: 50px;
+}
+
+
+
+.icons img {
+
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: auto;
+
+}
+
+.icons-div {
+  background-color: #182234;
+
+  width: 230px;
+  min-height: 180px;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border-radius: 15px;
+
+  border: 1px solid #29354a;
+}
+
+#icons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  justify-content: center;
+  margin-top: 75px;
+
+}
+.icons-div p {
+
+  color: lightgray;
+  font-size: 14px;
+}
+.text-icons {
+  font-family: "Bitcount Prop Single", system-ui;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+  color: darkgray;
+}
+body {
+  background-color: #0B1326;
+
+}
+.p-text,
+#text-home {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: medium;
+  font-weight: bold;
+  color: lightgray;
+  font-size: 24px;
+}
+#btn-play {
+
+  border: 5px solid;
+  background-color: #6818D6;
+  height: 46px;
+  width: 220px;
+  border: none;
+  border-radius: 6px;
+
+}
+#Ready-text {
+  font-size: larger;
+  font-weight: bolder;
+  color: lightblue;
+}
