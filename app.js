@@ -446,11 +446,14 @@ const questions = [
 /*-------------------------------- Variables --------------------------------*/
 let currentQuastion = null;
 let allanswer = null ;
+let timeLeft = 15;
+let timerInterval = null;
+let scorePlay = 0 ; 
 /* -------------------------------cashed Elements ----------------------------- */
  const toShow = document.querySelector('#textQ')
  const answer = document.querySelectorAll('.answerBtn')
-
-
+const timer = document.querySelector('#timer');
+const Score = document.querySelector('score-play')
 /*-------------------------------- Functions --------------------------------*/
 function showQ(){
 
@@ -473,8 +476,28 @@ answer.forEach((oneAnswer, index)=>{
 
 answer.textContent = allanswer.choices
 
+}
+function checkAnswer(event) {
 
+  const userAnswer = event.target;
 
+  if (userAnswer.textContent === currentQuastion.correctAnswer) {
+
+    userAnswer.style.backgroundColor = "green";
+
+  } else {
+
+    answer.forEach((oneAnswer) => {
+
+      if (oneAnswer.textContent === currentQuastion.correctAnswer) {
+        oneAnswer.style.backgroundColor = "green";
+      } else {
+        oneAnswer.style.backgroundColor = "red";
+      }
+
+    });
+
+  }
 
 }
 
@@ -484,12 +507,40 @@ answer.textContent = allanswer.choices
 
 
 
+function startTimer() {
+
+  timeLeft = 15;
+
+  timer.textContent = timeLeft;
+
+  timerInterval = setInterval(() => {
+
+    timeLeft--;
+
+    timer.textContent = timeLeft;
+
+    if (timeLeft === 0) {
+
+      clearInterval(timerInterval);
+
+      console.log("Time is over!");
+
+    }
+
+  }, 1000);
+}
 
 
-
+startTimer();
 showQ();
 choicesAnswerQ();
 console.log('space')
 console.log(allanswer)
+
 /*----------------------------- Event Listeners -----------------------------*/
 
+answer.forEach((oneAnswer) => {
+
+  oneAnswer.addEventListener('click', checkAnswer);
+
+});
