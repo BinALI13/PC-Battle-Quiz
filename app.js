@@ -1,4 +1,14 @@
 /*-------------------------------- Constants --------------------------------*/
+const QuastionsShows = []
+
+
+
+
+
+
+
+
+
 const questions = [
   {
     question: "Your GPU gets very hot while gaming. What should you check first?",
@@ -443,21 +453,51 @@ const questions = [
 
 
 
+  const showQuastion = [];
+
+
+  
+
+/* 
+
+0-39
+[7, 15, ]
+
+length == 15
+
+*/
+
+
 /*-------------------------------- Variables --------------------------------*/
 let currentQuastion = null;
 let allanswer = null ;
 let timeLeft = 15;
 let timerInterval = null;
-let scorePlay = 0 ; 
+let scorePlay =(0) ; 
+let result = null ; 
 /* -------------------------------cashed Elements ----------------------------- */
  const toShow = document.querySelector('#textQ')
  const answer = document.querySelectorAll('.answerBtn')
 const timer = document.querySelector('#timer');
-const Score = document.querySelector('score-play')
+
+const resultScore = document.querySelector('#yourScore')
 /*-------------------------------- Functions --------------------------------*/
 function showQ(){
+if(showQuastion.length===5){
+  stopQuastion();
+  return;
+}
+let random = Math.floor(Math.random () * questions.length); 
+for(let i=0; i<showQuastion.length; i++){
 
-const random = Math.floor(Math.random () * questions.length); 
+  if(showQuastion[i]===random){
+random = Math.floor(Math.random () * questions.length); 
+
+i=-1;
+  }
+}
+showQuastion.push(random)
+console.log(showQuastion)
 currentQuastion = questions[random]
 console.log(currentQuastion)
 toShow.textContent = currentQuastion.question
@@ -471,12 +511,28 @@ allanswer = currentQuastion.choices
 
 answer.forEach((oneAnswer, index)=>{
     oneAnswer.textContent = allanswer[index]
-
+ oneAnswer.disabled = false;
 })
 
 answer.textContent = allanswer.choices
 
 }
+
+ function stopQuastion(){
+
+
+clearInterval(timerInterval)
+toShow.textContent = 'Quiz finished'
+answer.forEach((oneAnswer)=>{
+  oneAnswer.disables = true;
+
+});
+timer.textContent = disabled;
+  resultScore=result
+console.log(result, "your result")
+ }
+
+
 function checkAnswer(event) {
 
   const userAnswer = event.target;
@@ -503,6 +559,63 @@ function checkAnswer(event) {
 
 
 
+  
+function checkAnswer(event) {
+
+  clearInterval(timerInterval);
+
+  const userAnswer = event.target;
+
+
+  if (userAnswer.textContent === currentQuastion.correctAnswer) {
+
+    userAnswer.style.backgroundColor = "green";
+   yourScore.textContent = scorePlay; 
+        scorePlay++;
+        console.log(scorePlay)
+ resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
+  
+  } else {
+
+    answer.forEach((oneAnswer) => {
+
+      if (oneAnswer.textContent === currentQuastion.correctAnswer) {
+        oneAnswer.style.backgroundColor = "green";
+     
+
+      } else {
+        oneAnswer.style.backgroundColor = "red";
+ resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
+
+      }
+
+    });
+
+  }
+
+  setTimeout(() => {
+    nextQuestion();
+  }, 1500);
+
+}
+
+function nextQuestion() {
+
+  clearInterval(timerInterval);
+
+  answer.forEach((oneAnswer) => {
+    oneAnswer.style.backgroundColor = "";
+ resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
+
+  });
+
+  showQ();
+
+  choicesAnswerQ();
+
+  startTimer();
+
+}
 
 
 
@@ -522,13 +635,14 @@ function startTimer() {
     if (timeLeft === 0) {
 
       clearInterval(timerInterval);
-
-      console.log("Time is over!");
-
+      
+     nextQuestion();
     }
 
   }, 1000);
 }
+
+
 
 
 startTimer();
@@ -536,7 +650,7 @@ showQ();
 choicesAnswerQ();
 console.log('space')
 console.log(allanswer)
-
+// console.log(scorePlay);
 /*----------------------------- Event Listeners -----------------------------*/
 
 answer.forEach((oneAnswer) => {
@@ -544,3 +658,5 @@ answer.forEach((oneAnswer) => {
   oneAnswer.addEventListener('click', checkAnswer);
 
 });
+
+

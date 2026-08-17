@@ -169,6 +169,8 @@ body {
 
 
 /* game play css */
+
+
 #textQ{
   color: lightgray;
 }
@@ -183,4 +185,13 @@ body {
 font-size: larger;
   background-color: lightgray;
   
+  }
+
+
+
+  #score-play ,#timer,#yourScore{
+
+color: lightgray ;
+
+
   }
