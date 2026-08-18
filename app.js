@@ -453,80 +453,118 @@ const questions = [
 
 
 
-  const showQuastion = [];
+const showQuastion = [];
 
 
-  
+
 
 
 /*-------------------------------- Variables --------------------------------*/
 let currentQuastion = null;
-let allanswer = null ;
+let allanswer = null;
 let timeLeft = 15;
 let timerInterval = null;
-let scorePlay =(0) ; 
-let result = null ; 
+let scorePlay = (0);
+let result = null;
 let answered = false;
+let hasLost = false
 /* -------------------------------cashed Elements ----------------------------- */
- const toShow = document.querySelector('#textQ')
- const answer = document.querySelectorAll('.answerBtn')
+const toShow = document.querySelector('#textQ')
+const answer = document.querySelectorAll('.answerBtn')
 const timer = document.querySelector('#timer');
 const resultScore = document.querySelector('#yourScore')
+const Agian = document.querySelector('#playAgian')
 /*-------------------------------- Functions --------------------------------*/
-function showQ(){
-if(showQuastion.length===15){
-  stopQuastion();
-  return;
-}
-let random = Math.floor(Math.random () * questions.length); 
-for(let i=0; i<showQuastion.length; i++){
+function showQ() {
+    Agian.style.display=''
 
-  if(showQuastion[i]===random){
-random = Math.floor(Math.random () * questions.length); 
-
-i=-1;
+  if (showQuastion.length === 2) {
+    stopQuastion();
+    return;
   }
-}
-showQuastion.push(random)
-console.log(showQuastion)
-currentQuastion = questions[random]
-console.log(currentQuastion)
-toShow.textContent = currentQuastion.question
+  let random = Math.floor(Math.random() * questions.length);
+  for (let i = 0; i < showQuastion.length; i++) {
+
+    if (showQuastion[i] === random) {
+      random = Math.floor(Math.random() * questions.length);
+
+      i = -1;
+    }
+  }
+  showQuastion.push(random)
+  console.log(showQuastion)
+  currentQuastion = questions[random]
+  console.log(currentQuastion)
+  toShow.textContent = currentQuastion.question
+
 
 }
 
-function choicesAnswerQ(){
-const random = Math.floor(Math.random () * currentQuastion.choices.length); 
-allanswer = currentQuastion.choices
+function choicesAnswerQ() {
+  const random = Math.floor(Math.random() * currentQuastion.choices.length);
+  allanswer = currentQuastion.choices
 
 
-answer.forEach((oneAnswer, index)=>{
+  answer.forEach((oneAnswer, index) => {
     oneAnswer.textContent = allanswer[index]
- oneAnswer.disabled = false;
-})
+    oneAnswer.disabled = false;
+  })
 
-answer.textContent = allanswer.choices
+  answer.textContent = allanswer.choices
 
 }
 
- function stopQuastion(){
+function stopQuastion() {
 
 
-clearInterval(timerInterval)
-toShow.textContent = 'Quiz finished'
-answer.forEach((oneAnswer)=>{
-  oneAnswer.disable = true;
+  clearInterval(timerInterval)
+  toShow.textContent = 'Quiz finished'
+  answer.forEach((oneAnswer) => {
+    oneAnswer.disable = true;
 
-});
-timer.textContent = disabled;
-  resultScore=result
-console.log(result, "your result")
- }
+  });
+
+
+  if (scorePlay <= 5) {
+
+    resultScore.innerHTML =
+      "YOU LOST <br>" +
+      "Score: " + scorePlay + " / 15 <br>" +
+      "Better luck next time!";
+
+  }
+
+  else if (scorePlay <= 9) {
+
+    resultScore.innerHTML =
+      " ALMOST THERE! <br>" +
+      "Score: " + scorePlay + " / 15 <br>" +
+      "You're getting close!";
+
+  }
+
+  else {
+
+    resultScore.innerHTML =
+      " YOU PASSED! <br>" +
+      "Score: " + scorePlay + " / 15 <br>" +
+      "Great job!";
+
+  }
+  // timer.textContent = disabled;
+  console.log('clearing interval')
+  console.log(timerInterval)
+  hasLost = true
+    clearInterval(timerInterval);
+
+Agian.style.display='block';
+}
 
 
 function checkAnswer(event) {
 
-  if (answered === true) {
+
+  if (answered === true || hasLost === true) {
     return;
   }
   answered = true;
@@ -543,22 +581,22 @@ function checkAnswer(event) {
   if (userAnswer.textContent === currentQuastion.correctAnswer) {
 
     userAnswer.style.backgroundColor = "green";
-   yourScore.textContent = scorePlay; 
-        scorePlay++;
-        console.log(scorePlay)
- resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
-  
+    yourScore.textContent = scorePlay;
+    scorePlay++;
+    console.log(scorePlay)
+    resultScore.innerHTML = 'your Score is : ' + scorePlay + ' Of ' + showQuastion.length
+
   } else {
 
     answer.forEach((oneAnswer) => {
 
       if (oneAnswer.textContent === currentQuastion.correctAnswer) {
         oneAnswer.style.backgroundColor = "green";
-     
+
 
       } else {
         oneAnswer.style.backgroundColor = "red";
- resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
+        resultScore.innerHTML = 'your Score is : ' + scorePlay + ' Of ' + showQuastion.length
 
       }
 
@@ -570,17 +608,19 @@ function checkAnswer(event) {
     nextQuestion();
   }, 1500);
 
+
 }
 
 function nextQuestion() {
+  if(hasLost) return
 
   clearInterval(timerInterval);
 
   answered = false;
-  
+
   answer.forEach((oneAnswer) => {
     oneAnswer.style.backgroundColor = "";
- resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
+    resultScore.innerHTML = 'your Score is : ' + scorePlay + ' Of ' + showQuastion.length
 
   });
 
@@ -593,9 +633,8 @@ function nextQuestion() {
 }
 
 
-
-
 function startTimer() {
+  if(hasLost) return
 
   timeLeft = 15;
 
@@ -610,9 +649,11 @@ function startTimer() {
     if (timeLeft === 0) {
 
       clearInterval(timerInterval);
-      
-     nextQuestion();
+
+      nextQuestion();
     }
+
+    console.log(timerInterval)
 
   }, 1000);
 }
@@ -625,7 +666,7 @@ showQ();
 choicesAnswerQ();
 console.log('space')
 console.log(allanswer)
-// console.log(scorePlay);
+
 console.log(scorePlay)
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -634,3 +675,4 @@ answer.forEach((oneAnswer) => {
   oneAnswer.addEventListener('click', checkAnswer);
 
 });
+

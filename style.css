@@ -176,22 +176,37 @@ body {
 }
 
 .quastion-game{
-
+display: flex;
   border: solid #29354a ;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 
 .answerBtn{
-font-size: larger;
+
   background-color: lightgray;
-  
+ 
+    width: 100%;
+  padding: 15px;
+  font-size: 18px;
   }
 
 
 
-  #score-play ,#timer,#yourScore{
+  #timer,#yourScore{
 
 color: lightgray ;
-
-
+font-size: 25px;
+justify-content: center;
+text-align: center;
   }
+
+#playAgian{
+
+display: none;
+height: 200px;
+width: 200px;
+}
+
+  
