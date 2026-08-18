@@ -478,7 +478,7 @@ const Agian = document.querySelector('#playAgian')
 function showQ() {
     Agian.style.display=''
 
-  if (showQuastion.length === 2) {
+  if (showQuastion.length ===15) {
     stopQuastion();
     return;
   }
