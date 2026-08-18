@@ -514,62 +514,6 @@ function choicesAnswerQ() {
 
 }
 
-function stopQuastion() {
-
-
-  clearInterval(timerInterval)
-  toShow.textContent = 'Quiz finished'
-  answer.forEach((oneAnswer) => {
-    oneAnswer.disable = true;
-
-  });
-
-
-  if (scorePlay <= 5) {
-
-    resultScore.innerHTML =
-      "YOU LOST <br>" +
-      "Score: " + scorePlay + " / 15 <br>" +
-      "Better luck next time!";
-
-  }
-
-  else if (scorePlay <= 9) {
-
-    resultScore.innerHTML =
-      " ALMOST THERE! <br>" +
-      "Score: " + scorePlay + " / 15 <br>" +
-      "You're getting close!";
-
-  }
-
-  else {
-
-    resultScore.innerHTML =
-      " YOU PASSED! <br>" +
-      "Score: " + scorePlay + " / 15 <br>" +
-      "Great job!";
-
-  }
-  // timer.textContent = disabled;
-  console.log('clearing interval')
-  console.log(timerInterval)
-  hasLost = true
-    clearInterval(timerInterval);
-
-Agian.style.display='block';
-
-
-answer.forEach(( k)=>{
-k.style.display = 'none'
-
-
-})
-
-
-
-}
-
 
 function checkAnswer(event) {
 
@@ -669,6 +613,102 @@ function startTimer() {
 }
 
 
+function stopQuastion() {
+
+
+  clearInterval(timerInterval)
+  toShow.textContent = 'Quiz finished'
+  answer.forEach((oneAnswer) => {
+    oneAnswer.disable = true;
+
+  });
+
+
+  if (scorePlay <= 5) {
+
+    resultScore.innerHTML =
+      "YOU LOST <br>" +
+      "Score: " + scorePlay + " / 15 <br>" +
+      "Better luck next time!";
+
+  }
+
+  else if (scorePlay <= 9) {
+
+    resultScore.innerHTML =
+      " ALMOST THERE! <br>" +
+      "Score: " + scorePlay + " / 15 <br>" +
+      "You're getting close!";
+
+  }
+
+  else {
+
+    resultScore.innerHTML =
+      " YOU PASSED! <br>" +
+      "Score: " + scorePlay + " / 15 <br>" +
+      "Great job!";
+
+  }
+
+  console.log('clearing interval')
+  console.log(timerInterval)
+  hasLost = true
+    clearInterval(timerInterval);
+
+Agian.style.display='block';
+
+
+answer.forEach(( k)=>{
+k.style.display = 'none'
+
+
+})
+
+
+
+}
+function Repet() {
+
+  clearInterval(timerInterval);
+
+  scorePlay = 0;
+
+  answered = false;
+
+  hasLost = false;
+
+  timeLeft = 15;
+
+
+  showQuastion.length = 0;
+
+  resultScore.innerHTML = 'your Score is : 0 Of 0';
+
+ 
+  Agian.style.display = 'none';
+
+ 
+  answer.forEach((oneAnswer) => {
+
+    oneAnswer.style.display = 'block';
+
+    oneAnswer.disabled = false;
+
+    oneAnswer.style.backgroundColor = '';
+
+  });
+
+  
+  timer.textContent = 15;
+
+  
+  showQ();
+
+  choicesAnswerQ();
+
+  startTimer();
+}
 
 
 startTimer();
@@ -685,4 +725,6 @@ answer.forEach((oneAnswer) => {
   oneAnswer.addEventListener('click', checkAnswer);
 
 });
+
+Agian.addEventListener('click',Repet);
 
