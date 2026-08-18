@@ -458,15 +458,6 @@ const questions = [
 
   
 
-/* 
-
-0-39
-[7, 15, ]
-
-length == 15
-
-*/
-
 
 /*-------------------------------- Variables --------------------------------*/
 let currentQuastion = null;
@@ -475,15 +466,15 @@ let timeLeft = 15;
 let timerInterval = null;
 let scorePlay =(0) ; 
 let result = null ; 
+let answered = false;
 /* -------------------------------cashed Elements ----------------------------- */
  const toShow = document.querySelector('#textQ')
  const answer = document.querySelectorAll('.answerBtn')
 const timer = document.querySelector('#timer');
-
 const resultScore = document.querySelector('#yourScore')
 /*-------------------------------- Functions --------------------------------*/
 function showQ(){
-if(showQuastion.length===5){
+if(showQuastion.length===15){
   stopQuastion();
   return;
 }
@@ -524,7 +515,7 @@ answer.textContent = allanswer.choices
 clearInterval(timerInterval)
 toShow.textContent = 'Quiz finished'
 answer.forEach((oneAnswer)=>{
-  oneAnswer.disables = true;
+  oneAnswer.disable = true;
 
 });
 timer.textContent = disabled;
@@ -535,32 +526,14 @@ console.log(result, "your result")
 
 function checkAnswer(event) {
 
-  const userAnswer = event.target;
-
-  if (userAnswer.textContent === currentQuastion.correctAnswer) {
-
-    userAnswer.style.backgroundColor = "green";
-
-  } else {
-
-    answer.forEach((oneAnswer) => {
-
-      if (oneAnswer.textContent === currentQuastion.correctAnswer) {
-        oneAnswer.style.backgroundColor = "green";
-      } else {
-        oneAnswer.style.backgroundColor = "red";
-      }
-
-    });
-
+  if (answered === true) {
+    return;
   }
+  answered = true;
 
-}
-
-
-
-  
-function checkAnswer(event) {
+  answer.forEach((oneAnswer) => {
+    oneAnswer.disabled = true;
+  });
 
   clearInterval(timerInterval);
 
@@ -603,6 +576,8 @@ function nextQuestion() {
 
   clearInterval(timerInterval);
 
+  answered = false;
+  
   answer.forEach((oneAnswer) => {
     oneAnswer.style.backgroundColor = "";
  resultScore.innerHTML='your Score is : '+ scorePlay + ' Of ' + showQuastion.length
@@ -659,5 +634,3 @@ answer.forEach((oneAnswer) => {
   oneAnswer.addEventListener('click', checkAnswer);
 
 });
-
-
