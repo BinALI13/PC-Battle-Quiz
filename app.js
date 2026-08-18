@@ -558,6 +558,16 @@ function stopQuastion() {
     clearInterval(timerInterval);
 
 Agian.style.display='block';
+
+
+answer.forEach(( k)=>{
+k.style.display = 'none'
+
+
+})
+
+
+
 }
 
 
