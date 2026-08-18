@@ -651,6 +651,7 @@ choicesAnswerQ();
 console.log('space')
 console.log(allanswer)
 // console.log(scorePlay);
+console.log(scorePlay)
 /*----------------------------- Event Listeners -----------------------------*/
 
 answer.forEach((oneAnswer) => {
