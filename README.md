@@ -12,6 +12,7 @@ the Quastion like which better CPU R7 5700 x or i5 12400f && gpu used for what l
 
 ## user stories 
 1. the user will think what the better or which correct answer and select it 
-2. user can skip the quastion 
+2. user can Choices one answer only
 3. user can get a help from system 
+4. Uswer can show the result after finish 
 
